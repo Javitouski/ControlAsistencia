@@ -5,9 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ControlAsistencia"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="450" Width="519">
     <Grid>
-        <Button Content="Button" HorizontalAlignment="Left" Margin="100,260,0,0" VerticalAlignment="Top" Height="45" Width="170"/>
+        <Button x:Name="BtnLog" Content="LogIn" Margin="234,253,0,0" VerticalAlignment="Top" Height="43" Width="158" Background="#FF14DED0" HorizontalAlignment="Left" Click="BtnLog_Click"/>
+        <TextBox x:Name="txtCorreo" HorizontalAlignment="Left" Margin="234,121,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="187" Height="22"/>
+        <Label Content="Usuario" HorizontalAlignment="Left" Margin="80,119,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.672,-0.223" Width="109"/>
+        <Label Content="Contraseña" HorizontalAlignment="Left" Margin="80,167,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.021,0.18" Width="109"/>
+        <TextBox x:Name="txtPassword" HorizontalAlignment="Left" Margin="234,169,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="187" Height="22"/>
 
     </Grid>
 </Window>
