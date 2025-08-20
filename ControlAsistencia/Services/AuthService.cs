@@ -33,5 +33,26 @@ namespace ControlAsistencia.Services
                 await _db.SaveChangesAsync();
             }
         }
+
+        public async Task EnsureDemoUserAsync()
+        {
+            var email = "user@empresa.com";
+            if (!await _db.Usuarios.AnyAsync(u => u.Correo == email))
+            {
+                var user = new Usuario
+                {
+                    Nombre = "Usuario Demo",
+                    Correo = email,
+                    HashPassword = BCrypt.Net.BCrypt.HashPassword("user123"),
+                    Rol = Rol.USER,         // <- importante: NO admin
+                    Activo = true,
+                    CreadoEn = DateTime.Now,
+                    ActualizadoEn = DateTime.Now
+                };
+                _db.Usuarios.Add(user);
+                await _db.SaveChangesAsync();
+            }
+        }
+
     }
 }
