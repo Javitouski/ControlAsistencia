@@ -1,35 +1,26 @@
 ﻿using ControlAsistencia.Data;
 using ControlAsistencia.Services;
 using Microsoft.EntityFrameworkCore;
-using System.Configuration;
-using System.Data;
 using System.Windows;
 
 namespace ControlAsistencia
 {
-    /// <summary>
-    /// Interaction logic for App.xaml
-    /// </summary>
     public partial class App : Application
     {
         protected override async void OnStartup(StartupEventArgs e)
         {
-            // Crea/actualiza la BD y siembra admin
-            using var db = new AsistenciaDbContext();
-
-            // Si usas migraciones (mejor práctica):
-            await db.Database.MigrateAsync();
-
-            // Si aún no usas migraciones, usa EnsureCreated (solo desarrollo):
-            // await db.Database.EnsureCreatedAsync();
-
-            await new AuthService(db).EnsureAdminAsync();
-
             base.OnStartup(e);
 
-            // Muestra la ventana principal
+            // Crear/actualizar BD y sembrar usuarios
+            using var db = new AsistenciaDbContext();
+            await db.Database.MigrateAsync();
+
+            var auth = new AuthService(db);
+            await auth.EnsureAdminAsync();     // admin@empresa.com / admin123
+            await auth.EnsureDemoUserAsync();  // user@empresa.com / user123  (nuevo)
+
+            // Mostrar login
             new MainWindow().Show();
         }
     }
-
 }
