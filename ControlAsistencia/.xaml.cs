@@ -10,29 +10,19 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace ControlAsistencia
 {
     /// <summary>
-    /// Lógica de interacción para AdminWindow.xaml
+    /// Lógica de interacción para AgregarUsuarioWindow.xaml
     /// </summary>
-    public partial class AdminWindow : Window
+    public partial class AgregarUsuarioWindow : Page
     {
-        public AdminWindow()
+        internal void Show()
         {
-            InitializeComponent();
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            new ReportesWindow().Show();
-            
-        }
-
-        private void Button_Click_1(object sender, RoutedEventArgs e)
-        {
-            new ExportarReportesWindow().Show();
+            throw new NotImplementedException();
         }
     }
 }

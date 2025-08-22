@@ -7,6 +7,12 @@
         mc:Ignorable="d"
         Title="AdminWindow" Height="450" Width="800">
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="33*"/>
+            <RowDefinition Height="401*"/>
+        </Grid.RowDefinitions>
+        <Button Content="Reportes en tiempo real&#xA;" HorizontalAlignment="Left" Margin="590,31,0,0" VerticalAlignment="Top" Height="52" Width="138" Click="Button_Click" Grid.Row="1"/>
+        <Button Content="Exportacion de reportes" HorizontalAlignment="Left" Margin="590,123,0,0" Grid.Row="1" VerticalAlignment="Top" Height="61" Width="138" Click="Button_Click_1"/>
+
     </Grid>
 </Window>

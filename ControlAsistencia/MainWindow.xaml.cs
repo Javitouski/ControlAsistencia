@@ -33,8 +33,6 @@ namespace ControlAsistencia
             {
                 new AttendanceWindow(user).Show();
             }
-
-            this.Close();
         }
     }
 }

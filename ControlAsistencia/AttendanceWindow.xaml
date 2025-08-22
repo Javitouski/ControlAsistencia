@@ -32,5 +32,6 @@
                 Padding="24,12"
                 Background="#30E3CA" Foreground="Black"
                 Content="Registrar"/>
+        <Button Content="Button" HorizontalAlignment="Left" Height="0" Margin="-126,0,0,0" Grid.Row="1" VerticalAlignment="Top" Width="5"/>
     </Grid>
 </Window>
