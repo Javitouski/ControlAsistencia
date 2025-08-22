@@ -6,8 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace ControlAsistencia.Models
-{
-    public class Usuario
+{    public class Usuario
     {
         public int Id { get; set; }
         public string Nombre { get; set; } = null!;
@@ -15,8 +14,13 @@ namespace ControlAsistencia.Models
         public string HashPassword { get; set; } = null!;
         public Rol Rol { get; set; } = Rol.USER;
         public bool Activo { get; set; } = true;
+
+        // NUEVO:
+        public string Rut { get; set; } = null!; // ej: "11111111-1" (sin puntos, DV en mayúscula)
+
         public DateTime CreadoEn { get; set; }
         public DateTime ActualizadoEn { get; set; }
         public ICollection<Asistencia> Asistencias { get; set; } = new List<Asistencia>();
     }
+
 }

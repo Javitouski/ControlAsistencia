@@ -48,14 +48,24 @@ namespace ControlAsistencia.Data
 
 
             // Usuario
+            // Usuario
             b.Entity<Usuario>(e =>
             {
-                e.HasIndex(x => x.Correo).IsUnique();
-                e.Property(x => x.Rol).HasConversion<string>();
-                e.Property(x => x.Activo).HasDefaultValue(true);
-                e.Property(x => x.CreadoEn).HasDefaultValueSql("CURRENT_TIMESTAMP");
-                e.Property(x => x.ActualizadoEn).HasDefaultValueSql("CURRENT_TIMESTAMP");
+                e.Property(u => u.Nombre).HasMaxLength(100).IsRequired();
+                e.Property(u => u.Correo).HasMaxLength(150).IsRequired();
+                e.Property(u => u.HashPassword).IsRequired();
+
+                e.Property(u => u.Rol).HasConversion<string>();      // enum como texto
+                e.Property(u => u.Activo).HasDefaultValue(true);
+                e.Property(u => u.CreadoEn).HasDefaultValueSql("CURRENT_TIMESTAMP");
+                e.Property(u => u.ActualizadoEn).HasDefaultValueSql("CURRENT_TIMESTAMP");
+
+                // RUT requerido y único
+                e.Property(u => u.Rut).HasMaxLength(12).IsRequired();
+                e.HasIndex(u => u.Correo).IsUnique();
+                e.HasIndex(u => u.Rut).IsUnique();
             });
+
 
 
             // Asistencia
