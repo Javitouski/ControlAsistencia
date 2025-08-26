@@ -23,5 +23,12 @@ namespace ControlAsistencia
         {
             InitializeComponent();
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            var win = new UsuariosWindow();
+            win.Owner = this;
+            win.ShowDialog();
+        }
     }
 }

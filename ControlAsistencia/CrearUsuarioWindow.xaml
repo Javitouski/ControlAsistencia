@@ -1,0 +1,47 @@
+﻿<Window x:Class="ControlAsistencia.CrearUsuarioWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Crear Usuario" Height="518" Width="363" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+    <Grid Margin="20">
+        <Border CornerRadius="8" Background="#FFF" Padding="16" BorderBrush="#DDD" BorderThickness="1">
+            <StackPanel>
+                <TextBlock Text="Nuevo Usuario" FontWeight="Bold" FontSize="18" Margin="0,0,0,16" HorizontalAlignment="Center"/>
+
+                <StackPanel Orientation="Vertical" Margin="0,0,0,8">
+                    <Label Content="RUT"/>
+                    <TextBox x:Name="txtRut" Height="28" Margin="0,0,0,4" />
+                    <TextBlock x:Name="lblRutError" Foreground="Red" FontSize="12" Visibility="Collapsed"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Vertical" Margin="0,0,0,8">
+                    <Label Content="Nombre"/>
+                    <TextBox x:Name="txtNombre" Height="28" Margin="0,0,0,4" />
+                    <TextBlock x:Name="lblNombreError" Foreground="Red" FontSize="12" Visibility="Collapsed"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Vertical" Margin="0,0,0,8">
+                    <Label Content="Correo"/>
+                    <TextBox x:Name="txtCorreo" Height="28" Margin="0,0,0,4" />
+                    <TextBlock x:Name="lblCorreoError" Foreground="Red" FontSize="12" Visibility="Collapsed"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Vertical" Margin="0,0,0,8">
+                    <Label Content="Contraseña"/>
+                    <PasswordBox x:Name="txtContraseña" Height="28" Margin="0,0,0,4"/>
+                    <TextBlock x:Name="lblContraseñaError" Foreground="Red" FontSize="12" Visibility="Collapsed"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Vertical" Margin="0,0,0,16">
+                    <Label Content="Rol"/>
+                    <ComboBox x:Name="cmbRol" Height="28" Margin="0,0,0,4"/>
+                    <TextBlock x:Name="lblRolError" Foreground="Red" FontSize="12" Visibility="Collapsed"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                    <Button Content="Guardar" Click="BtnGuardar_Click" Width="90" Margin="0,0,8,0"/>
+                    <Button Content="Cancelar" Click="BtnCancelar_Click" Width="90"/>
+                </StackPanel>
+            </StackPanel>
+        </Border>
+    </Grid>
+</Window>
