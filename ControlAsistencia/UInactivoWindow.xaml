@@ -1,0 +1,26 @@
+﻿<Window x:Class="ControlAsistencia.UInactivoWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ControlAsistencia.Models"
+        mc:Ignorable="d"
+        Title="UInactivoWindow" Height="450" Width="800">
+    <Grid>
+        <StackPanel Margin="10">
+            <TextBlock FontSize="18" Margin="0,0,0,10" 
+               Text="Usuarios Inactivos"/>
+            <DataGrid x:Name="listUsuarios" AutoGenerateColumns="False" 
+              Height="250" IsReadOnly="True" SelectionMode="Single">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="RUT" Binding="{Binding Rut}" Width="*"/>
+                    <DataGridTextColumn Header="Nombre" Binding="{Binding Nombre}" Width="*"/>
+                    <DataGridTextColumn Header="Correo" Binding="{Binding Correo}" Width="*"/>
+                    <DataGridTextColumn Header="Rol" Binding="{Binding Rol}" Width="*"/>
+                </DataGrid.Columns>
+            </DataGrid>
+
+            <Button Content="Activar Usuario" Click="BtnActivar_Click" Margin="0,10,0,0" Width="150"/>
+        </StackPanel>
+    </Grid>
+</Window>
