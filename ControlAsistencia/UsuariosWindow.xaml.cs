@@ -22,18 +22,18 @@ namespace ControlAsistencia
         public UsuariosWindow()
         {
             InitializeComponent();
-            CargarUsuarios();
+            CargarUsuariosActivos();
         }
-        private void CargarUsuarios()
+        private void CargarUsuariosActivos()
         {
-            using var db = new Data.AsistenciaDbContext();
-            dgUsuarios.ItemsSource = db.Usuarios.ToList();
-        }
+            using (var db = new Data.AsistenciaDbContext())
+            {
+                var usuariosActivos = db.Usuarios
+                    .Where(u => u.Activo) // Solo muestra a los usuarios activos
+                    .ToList();
+                dgUsuarios.ItemsSource = usuariosActivos;
+            }
 
-
-        private void dgUsuarios_RowEditEnding(object sender, DataGridRowEditEndingEventArgs e)
-        {
-            // Lógica para guardar/actualizar usuarios aquí
         }
 
         private void BtnCrear_Click(object sender, RoutedEventArgs e)
@@ -41,7 +41,7 @@ namespace ControlAsistencia
             var win = new CrearUsuarioWindow();
             if (win.ShowDialog() == true)
             {
-                CargarUsuarios();
+                CargarUsuariosActivos();
             }
         }
 
@@ -56,12 +56,13 @@ namespace ControlAsistencia
 
             if (usuarioSeleccionado == null)
             {
-                MessageBox.Show("Seleccione un usuario para eliminar.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Seleccione un usuario para desactivar.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
 
             //Confirmacion
-            var result = MessageBox.Show($"¿Está seguro que desea eliminar al usuario {usuarioSeleccionado.Nombre}?", "Confirmar eliminación", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+            var result = MessageBox.Show($"¿Está seguro que desea desactivar al usuario {usuarioSeleccionado.Nombre}?"
+                , "Confirmar desactivacion", MessageBoxButton.YesNo, MessageBoxImage.Warning);
 
             if (result != MessageBoxResult.Yes)
             {
@@ -79,18 +80,33 @@ namespace ControlAsistencia
                         MessageBox.Show("El usuario ya no existe en la base de datos.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                         return;
                     }
-                    db.Usuarios.Remove(usuarioDb);
+                    usuarioDb.Activo = false;
+                    usuarioDb.ActualizadoEn = DateTime.Now;
                     db.SaveChanges();
                 }
 
-                MessageBox.Show("Usuario eliminado exitosamente.", "Éxito", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show("Usuario desactivado exitosamente.", "Éxito", MessageBoxButton.OK, MessageBoxImage.Information);
                 //Recargar la lista de usuarios
-                CargarUsuarios();
+                CargarUsuariosActivos();
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error al eliminar el usuario: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show($"Error al desactivar el usuario: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
+        }
+
+        private void BtnInactivo_Click(object sender, RoutedEventArgs e)
+        {
+            var win = new UInactivoWindow();
+            if(win.ShowDialog() == true)
+            {
+
+            };
+        }
+
+        private void BtnActualziar_Click(object sender, RoutedEventArgs e)
+        {
+            CargarUsuariosActivos();
         }
     }
 }
