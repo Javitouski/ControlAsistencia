@@ -22,17 +22,18 @@ namespace ControlAsistencia
     /// </summary>
     public partial class CrearUsuarioWindow : Window
     {
+        //Inicializa la aplicacion y carga los roles en el ComboBox
         public CrearUsuarioWindow()
         {
             InitializeComponent();
             cmbRol.ItemsSource = Enum.GetValues(typeof(Rol));
         }
-
+        //Evento para guardar un nuevo usuario
         private void BtnGuardar_Click(object sender, RoutedEventArgs e)
         {
-            
+            // Validaciones de entrada
             bool isValid = true;
-
+            // Ocultar todos los mensajes de error inicialmente
             lblRutError.Visibility = Visibility.Collapsed;
             lblNombreError.Visibility = Visibility.Collapsed;
             lblCorreoError.Visibility = Visibility.Collapsed;
@@ -76,7 +77,7 @@ namespace ControlAsistencia
                 lblRolError.Visibility = Visibility.Visible;
                 isValid = false;
             }
-
+            // Si alguna validacion falla, se muestra un mensaje y se detiene el guardado
             if (!isValid)
             {
                 MessageBox.Show("Por favor, corrija los errores antes de guardar.", "Validacion", MessageBoxButton.OK, MessageBoxImage.Warning);
@@ -84,10 +85,11 @@ namespace ControlAsistencia
             }
             try
             {
+                
                 using (var db = new AsistenciaDbContext())
                 {//Hashear la contraseña usando BCrypt
                     string hashedPassword = BCrypt.Net.BCrypt.HashPassword(txtContraseña.Password);
-
+                    //Crear el objeto usuario y guardarlo en la base de datos
                     var usuario = new Models.Usuario
                     {
                         Rut = txtRut.Text.Trim(),
@@ -116,6 +118,7 @@ namespace ControlAsistencia
     );
             }
         }
+        //Evento para cancelar la creacion de un nuevo usuario
         private void BtnCancelar_Click(object sender, RoutedEventArgs e)
         {
             DialogResult = false;

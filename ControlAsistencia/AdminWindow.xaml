@@ -8,6 +8,8 @@
         Title="AdminWindow" Height="450" Width="800">
     <Grid>
         <Button x:Name="btnUsuarios" Content="Usuarios" HorizontalAlignment="Left" Margin="603,41,0,0" VerticalAlignment="Top" Height="27" Width="49" RenderTransformOrigin="0.611,-1.061" Click="Button_Click"/>
+        <Button x:Name="btnReporteRT" Content="Reporte RT" HorizontalAlignment="Left" Margin="603,93,0,0" VerticalAlignment="Top" Height="39" Width="80" Click="btnReporteRT_Click"/>
+        <Button x:Name="btnReporteG" Content="Exportar Reporte" HorizontalAlignment="Left" Margin="603,155,0,0" VerticalAlignment="Top" Height="44" Width="104" Click="btnReporteG_Click"/>
 
     </Grid>
 </Window>

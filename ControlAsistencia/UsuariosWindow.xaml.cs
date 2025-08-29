@@ -19,11 +19,15 @@ namespace ControlAsistencia
     /// </summary>
     public partial class UsuariosWindow : Window
     {
+
+        //Inicializa la aplicacion y carga los usuarios activos
         public UsuariosWindow()
         {
             InitializeComponent();
             CargarUsuariosActivos();
         }
+
+        //Método para cargar los usuarios activos en el DataGrid
         private void CargarUsuariosActivos()
         {
             using (var db = new Data.AsistenciaDbContext())
@@ -35,7 +39,7 @@ namespace ControlAsistencia
             }
 
         }
-
+        //Evento que abre la ventana para crear un nuevo usuario
         private void BtnCrear_Click(object sender, RoutedEventArgs e)
         {
             var win = new CrearUsuarioWindow();
@@ -45,22 +49,25 @@ namespace ControlAsistencia
             }
         }
 
+        //Evento para editar un usuario seleccionado
         private void BtnEditar_Click(object sender, RoutedEventArgs e)
         {
             // Lógica para editar usuario
         }
 
+        //Evento para eliminar (desactivar) un usuario seleccionado
         private void BtnEliminar_Click(object sender, RoutedEventArgs e)
-        {
+        {   // Obtener el usuario seleccionado  
             var usuarioSeleccionado = dgUsuarios.SelectedItem as Models.Usuario;
 
+            // Validar que se haya seleccionado un usuario
             if (usuarioSeleccionado == null)
             {
                 MessageBox.Show("Seleccione un usuario para desactivar.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
 
-            //Confirmacion
+            // Confirmacion de desactivacion
             var result = MessageBox.Show($"¿Está seguro que desea desactivar al usuario {usuarioSeleccionado.Nombre}?"
                 , "Confirmar desactivacion", MessageBoxButton.YesNo, MessageBoxImage.Warning);
 
@@ -69,6 +76,8 @@ namespace ControlAsistencia
                 return;
             }
 
+
+            // Desactivar el usuario en la base de datos
             try
             {
                 using (var db = new Data.AsistenciaDbContext())
@@ -80,6 +89,7 @@ namespace ControlAsistencia
                         MessageBox.Show("El usuario ya no existe en la base de datos.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                         return;
                     }
+                    //Desactivar el usuario, actualizar la fecha y guardar cambios
                     usuarioDb.Activo = false;
                     usuarioDb.ActualizadoEn = DateTime.Now;
                     db.SaveChanges();
@@ -94,16 +104,12 @@ namespace ControlAsistencia
                 MessageBox.Show($"Error al desactivar el usuario: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
-
+        //Evento para abrir la ventana de usuarios inactivos
         private void BtnInactivo_Click(object sender, RoutedEventArgs e)
         {
-            var win = new UInactivoWindow();
-            if(win.ShowDialog() == true)
-            {
-
-            };
+            new UInactivoWindow().Show();
         }
-
+        //Evento para actualizar la lista de usuarios activos
         private void BtnActualziar_Click(object sender, RoutedEventArgs e)
         {
             CargarUsuariosActivos();

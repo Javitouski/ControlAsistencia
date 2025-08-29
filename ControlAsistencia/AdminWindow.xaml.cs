@@ -23,12 +23,23 @@ namespace ControlAsistencia
         {
             InitializeComponent();
         }
-
+        // Abre la ventana de gestión de usuarios
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             var win = new UsuariosWindow();
             win.Owner = this;
             win.ShowDialog();
+        }
+        // Abre la ventana de Reportes de usuarios en pantalla
+        private void btnReporteRT_Click(object sender, RoutedEventArgs e)
+        {
+            new ReportesWindow().Show();
+        }
+        // Abre la ventana de exportación de reportes
+        private void btnReporteG_Click(object sender, RoutedEventArgs e)
+        {
+            new ExportarReportesWindow().Show();
+            
         }
     }
 }
