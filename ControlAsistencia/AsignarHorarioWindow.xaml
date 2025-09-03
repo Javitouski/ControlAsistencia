@@ -1,0 +1,57 @@
+﻿<Window x:Class="ControlAsistencia.AsignarHorarioWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Asignar horario" Height="260" Width="480" WindowStartupLocation="CenterOwner">
+    <Grid Margin="16">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Formulario -->
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="110"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <!-- Usuario -->
+            <TextBlock Grid.Row="0" Grid.Column="0" Text="Usuario:" VerticalAlignment="Center" Margin="0,0,8,10"/>
+            <ComboBox Grid.Row="0" Grid.Column="1" x:Name="cmbUsuario" 
+                      DisplayMemberPath="Nombre" SelectedValuePath="Id"
+                      Margin="0,0,0,10" />
+
+            <!-- Horario -->
+            <TextBlock Grid.Row="1" Grid.Column="0" Text="Horario:" VerticalAlignment="Center" Margin="0,0,8,10"/>
+            <ComboBox Grid.Row="1" Grid.Column="1" x:Name="cmbHorario"
+          DisplayMemberPath="Descripcion" SelectedValuePath="Id"
+          Margin="0,0,0,10" />
+
+
+            <!-- Desde -->
+            <TextBlock Grid.Row="2" Grid.Column="0" Text="Desde:" VerticalAlignment="Center" Margin="0,0,8,10"/>
+            <DatePicker Grid.Row="2" Grid.Column="1" x:Name="dpDesde" Margin="0,0,0,10"/>
+
+            <!-- Hasta + check -->
+            <TextBlock Grid.Row="3" Grid.Column="0" Text="Hasta (opcional):" VerticalAlignment="Center" Margin="0,0,8,0"/>
+            <StackPanel Grid.Row="3" Grid.Column="1" Orientation="Horizontal">
+                <DatePicker x:Name="dpHasta" Margin="0,0,10,0"/>
+                <CheckBox x:Name="chkReemplazar"
+              Content="Reemplazar horarios superpuestos (cerrar/recortar los actuales)"/>
+            </StackPanel>
+
+        </Grid>
+
+        <!-- Botones -->
+        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,12,0,0">
+            <Button Content="Cancelar" Width="90" Margin="0,0,10,0" Click="BtnCancelar_Click"/>
+            <Button Content="Asignar" Width="110" Click="BtnAsignar_Click"/>
+        </StackPanel>
+    </Grid>
+</Window>

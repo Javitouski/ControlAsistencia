@@ -25,6 +25,9 @@
                 <Button Content="Desactivar" Click="BtnEliminar_Click" Width="80" Margin="0,0,10,0"/>
                 <Button Content="Inactivos" Click="BtnInactivo_Click" Width="80" Margin="0,0,10,0"/>
                 <Button Content="Actualziar" Click="BtnActualziar_Click" Width="80" Margin="0,0,10,0"/>
+                <Button Content="Asignar horario" Click="BtnAsignarHorario_Click" Width="120" Margin="0,0,10,0"/>
+                <Button Content="Historial horarios" Click="BtnHistorialHorarios_Click" Width="130" Margin="0,0,10,0"/>
+
             </StackPanel>
         </StackPanel>
     </Grid>

@@ -114,8 +114,45 @@ namespace ControlAsistencia
         {
             CargarUsuariosActivos();
         }
+
+        private void BtnAsignarHorario_Click(object sender, RoutedEventArgs e)
+        {
+            if (dgUsuarios.SelectedItem is not Models.Usuario u)
+            {
+                MessageBox.Show("Seleccione un usuario."); return;
+            }
+            var win = new AsignarHorarioWindow(u.Id) { Owner = this };
+            if (win.ShowDialog() == true)
+                CargarUsuariosActivos();
+        }
+
+        private async void BtnHistorialHorarios_Click(object sender, RoutedEventArgs e)
+        {
+            if (dgUsuarios.SelectedItem is not Models.Usuario u)
+            {
+                MessageBox.Show("Seleccione un usuario."); return;
+            }
+
+            using var db = new Data.AsistenciaDbContext();
+            var svc = new Services.HorarioService(db);
+            var hist = await svc.GetAsignacionesAsync(u.Id);
+
+            var lineas = hist.Select(h =>
+            {
+                var desdeTxt = h.VigenteDesde.ToString("yyyy-MM-dd");
+                var hastaTxt = h.VigenteHasta.HasValue
+                    ? $"→ {h.VigenteHasta.Value:yyyy-MM-dd}"
+                    : "→ ∞";
+                var tramoTxt = $"{h.Horario.HoraInicio:hh\\:mm}-{h.Horario.HoraFin:hh\\:mm}"; // <- hh y mm
+                return $"{desdeTxt} {hastaTxt}   {tramoTxt}";
+            });
+
+            var texto = string.Join(Environment.NewLine, lineas);
+            MessageBox.Show(texto.Length == 0 ? "Sin asignaciones." : texto, "Historial de horarios");
+        }
+
+        }
     }
-}
 
 
 
