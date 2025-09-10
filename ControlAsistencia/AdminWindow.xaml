@@ -5,11 +5,70 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ControlAsistencia"
         mc:Ignorable="d"
-        Title="AdminWindow" Height="450" Width="800">
-    <Grid>
-        <Button x:Name="btnUsuarios" Content="Usuarios" HorizontalAlignment="Left" Margin="603,41,0,0" VerticalAlignment="Top" Height="27" Width="49" RenderTransformOrigin="0.611,-1.061" Click="Button_Click"/>
-        <Button x:Name="btnReporteRT" Content="Reporte RT" HorizontalAlignment="Left" Margin="603,93,0,0" VerticalAlignment="Top" Height="39" Width="80" Click="btnReporteRT_Click"/>
-        <Button x:Name="btnReporteG" Content="Exportar Reporte" HorizontalAlignment="Left" Margin="603,155,0,0" VerticalAlignment="Top" Height="44" Width="104" Click="btnReporteG_Click"/>
+        Title="Panel de Administración" Height="450" Width="800"
+        WindowStartupLocation="CenterScreen">
 
+    <!-- Fondo degradado -->
+    <Window.Background>
+        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+            <GradientStop Color="#F4F9F9" Offset="0"/>
+            <GradientStop Color="#E9FFFE" Offset="1"/>
+        </LinearGradientBrush>
+    </Window.Background>
+
+    <Grid Margin="16">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- Encabezado -->
+        <Border Grid.Row="0" Background="#3FC1C9" CornerRadius="8" Padding="12" Margin="0,0,0,12">
+            <TextBlock Text="Panel de Administración"
+                       FontSize="18"
+                       FontWeight="Bold"
+                       Foreground="White"/>
+        </Border>
+
+        <!-- Botones centrados -->
+        <StackPanel Grid.Row="1" Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,58,0,0">
+            <!-- Botón Usuarios -->
+            <Button x:Name="btnUsuarios"
+                    Content="Usuarios"
+                    Width="220" Height="45"
+                    Background="#30E3CA"
+                    Foreground="White"
+                    FontSize="16"
+                    FontWeight="SemiBold"
+                    BorderThickness="0"
+                    Margin="0,0,0,12"
+                    Cursor="Hand"
+                    Click="Button_Click"/>
+
+            <!-- Botón Reporte Tiempo Real -->
+            <Button x:Name="btnReporteRT"
+                    Content="Reporte RT"
+                    Width="220" Height="45"
+                    Background="#00ADB5"
+                    Foreground="White"
+                    FontSize="16"
+                    FontWeight="SemiBold"
+                    BorderThickness="0"
+                    Margin="0,0,0,12"
+                    Cursor="Hand"
+                    Click="btnReporteRT_Click"/>
+            <Button x:Name="btnReporteG"
+                    Content="Exportar Reporte"
+                    Width="220" Height="45"
+                    Background="#11999E"
+                    Foreground="White"
+                    FontSize="16"
+                    FontWeight="SemiBold"
+                    BorderThickness="0"
+                    Cursor="Hand"
+                    Click="btnReporteG_Click"/>
+
+            <!-- Botón Exportar Reporte -->
+        </StackPanel>
     </Grid>
 </Window>

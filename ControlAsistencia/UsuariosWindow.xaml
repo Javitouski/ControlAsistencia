@@ -5,27 +5,67 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ControlAsistencia.Models"
         mc:Ignorable="d"
-        Title="UsuariosWindow" Height="450" Width="800">
-    <Grid>
-        <StackPanel Margin="10">
-            <TextBlock FontSize="18" Margin="0,0,0,10"><Run Language="es-cl" Text="Gestión de Usuarios"/></TextBlock>
-            <DataGrid x:Name="dgUsuarios" AutoGenerateColumns="False" Height="250" IsReadOnly="False" CanUserAddRows="True" SelectionMode="Single">
+        Title="Gestión de Usuarios" Height="500" Width="820"
+        WindowStartupLocation="CenterScreen"
+        Background="#E0F7F7">
+
+    <Grid Margin="16">
+        <StackPanel>
+
+            <!-- Encabezado -->
+            <Border Background="#30E3CA" CornerRadius="10" Padding="12" Margin="0,0,0,16">
+                <TextBlock Text="📋 Gestión de Usuarios"
+                           FontSize="20"
+                           FontWeight="Bold"
+                           Foreground="White"/>
+            </Border>
+
+            <!-- DataGrid -->
+            <DataGrid x:Name="dgUsuarios"
+                      AutoGenerateColumns="False"
+                      Height="280"
+                      IsReadOnly="False"
+                      CanUserAddRows="True"
+                      SelectionMode="Single"
+                      RowBackground="#F9FFFF"
+                      AlternatingRowBackground="#E9FFFE"
+                      GridLinesVisibility="None"
+                      BorderBrush="#CCC"
+                      BorderThickness="1">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="RUT" Binding="{Binding Rut}" Width="*"/>
-                    <DataGridTextColumn Header="Nombre" Binding="{Binding Nombre}" Width="*"/>
-                    <DataGridTextColumn Header="Correo" Binding="{Binding Correo}" Width="*"/>
-                    <DataGridComboBoxColumn Header="Rol"
-                        SelectedItemBinding="{Binding Rol}" Width="*"
-                        ItemsSource="{x:Static local:RolHelper.Roles}" />
+                    <DataGridTextColumn Header="🆔 RUT" Binding="{Binding Rut}" Width="*"/>
+                    <DataGridTextColumn Header="👤 Nombre" Binding="{Binding Nombre}" Width="*"/>
+                    <DataGridTextColumn Header="✉️ Correo" Binding="{Binding Correo}" Width="*"/>
+                    <DataGridComboBoxColumn Header="🔑 Rol"
+                                            SelectedItemBinding="{Binding Rol}" Width="*"
+                                            ItemsSource="{x:Static local:RolHelper.Roles}" />
                 </DataGrid.Columns>
+                <DataGrid.ColumnHeaderStyle>
+                    <Style TargetType="DataGridColumnHeader">
+                        <Setter Property="Background" Value="#30E3CA"/>
+                        <Setter Property="Foreground" Value="White"/>
+                        <Setter Property="FontWeight" Value="SemiBold"/>
+                        <Setter Property="FontSize" Value="14"/>
+                        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                        <Setter Property="Padding" Value="6"/>
+                    </Style>
+                </DataGrid.ColumnHeaderStyle>
             </DataGrid>
-            <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
-                <Button Content="Crear" Click="BtnCrear_Click" Width="80" Margin="0,0,10,0"/>
-                <Button Content="Editar" Click="BtnEditar_Click" Width="80" Margin="0,0,10,0"/>
-                <Button Content="Desactivar" Click="BtnEliminar_Click" Width="80" Margin="0,0,10,0"/>
-                <Button Content="Inactivos" Click="BtnInactivo_Click" Width="80" Margin="0,0,10,0"/>
-                <Button Content="Actualziar" Click="BtnActualziar_Click" Width="80" Margin="0,0,10,0"/>
+
+            <!-- Botones -->
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,16,0,0" >
+                <Button Content="Crear" Click="BtnCrear_Click" Width="100" Height="38" Margin="0,0,10,0" 
+                        Background="#30E3CA" Foreground="White" FontWeight="SemiBold" BorderThickness="0" Cursor="Hand"/>
+                <Button Content="Editar" Click="BtnEditar_Click" Width="100" Height="38" Margin="0,0,10,0"
+                        Background="#00ADB5" Foreground="White" FontWeight="SemiBold" BorderThickness="0" Cursor="Hand"/>
+                <Button Content="Desactivar" Click="BtnEliminar_Click" Width="100" Height="38" Margin="0,0,10,0"
+                        Background="#11999E" Foreground="White" FontWeight="SemiBold" BorderThickness="0" Cursor="Hand"/>
+                <Button Content="Inactivos" Click="BtnInactivo_Click" Width="100" Height="38" Margin="0,0,10,0"
+                        Background="#0F7B7B" Foreground="White" FontWeight="SemiBold" BorderThickness="0" Cursor="Hand"/>
+                <Button Content="Actualizar" Click="BtnActualziar_Click" Width="100" Height="38"
+                        Background="#30E3CA" Foreground="White" FontWeight="SemiBold" BorderThickness="0" Cursor="Hand"/>
             </StackPanel>
+
         </StackPanel>
     </Grid>
 </Window>

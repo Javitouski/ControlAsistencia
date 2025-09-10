@@ -1,30 +1,101 @@
 ﻿<Window x:Class="ControlAsistencia.ExportarReportesWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Exportar Reportes" Height="272" Width="741"
+        Title="📤 Exportar Reportes" Height="348" Width="760"
         WindowStartupLocation="CenterScreen">
-    <Grid Margin="20">
+
+    <!-- Fondo degradado -->
+    <Window.Background>
+        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+            <GradientStop Color="#F4F9F9" Offset="0"/>
+            <GradientStop Color="#E9FFFE" Offset="1"/>
+        </LinearGradientBrush>
+    </Window.Background>
+
+    <Window.Resources>
+        <!-- Estilo para tarjetas -->
+        <Style x:Key="Card" TargetType="Border">
+            <Setter Property="CornerRadius" Value="8"/>
+            <Setter Property="Padding" Value="16"/>
+            <Setter Property="Margin" Value="0,0,0,16"/>
+            <Setter Property="Background" Value="#E3FDFD"/>
+        </Style>
+
+        <!-- Estilo para el botón principal -->
+        <Style x:Key="PrimaryButton" TargetType="Button">
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Background" Value="#30E3CA"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="Width" Value="220"/>
+            <Setter Property="Height" Value="48"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="root"
+                                Background="{TemplateBinding Background}"
+                                CornerRadius="10"
+                                SnapsToDevicePixels="True">
+                            <Border.Effect>
+                                <DropShadowEffect ShadowDepth="2" BlurRadius="10" Opacity="0.25"/>
+                            </Border.Effect>
+                            <ContentPresenter HorizontalAlignment="Center"
+                                              VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="root" Property="Opacity" Value="0.9"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter TargetName="root" Property="Background" Value="#2CD8BE"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+
+    <Grid Margin="24">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
+        <!-- Encabezado -->
+        <Border Grid.Row="0" Background="#3FC1C9" CornerRadius="8" Padding="12" Margin="0,0,0,16">
+            <TextBlock Text="📊 Filtros de Exportación"
+                       FontSize="18"
+                       FontWeight="Bold"
+                       Foreground="White"/>
+        </Border>
+
         <!-- Filtros -->
-        <StackPanel Orientation="Horizontal" Margin="0,0,0,20">
-            <TextBlock Text="Fecha Inicio:" VerticalAlignment="Center" Margin="0,0,10,0"/>
-            <DatePicker x:Name="dpFechaInicio" Width="150"/>
+        <Border Grid.Row="1" Style="{StaticResource Card}">
+            <StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="0,0,0,12">
+                    <TextBlock Text="📅 Fecha Inicio:" Width="100" VerticalAlignment="Center" FontWeight="SemiBold"/>
+                    <DatePicker x:Name="dpFechaInicio" Width="180"/>
+                </StackPanel>
 
-            <TextBlock Text="   Fecha Fin:" VerticalAlignment="Center" Margin="20,0,10,0"/>
-            <DatePicker x:Name="dpFechaFin" Width="150"/>
+                <StackPanel Orientation="Horizontal" Margin="0,0,0,12">
+                    <TextBlock Text="📅 Fecha Fin:" Width="100" VerticalAlignment="Center" FontWeight="SemiBold"/>
+                    <DatePicker x:Name="dpFechaFin" Width="180"/>
+                </StackPanel>
 
-            <TextBlock Text="   RUT:" VerticalAlignment="Center" Margin="20,0,10,0"/>
-            <TextBox x:Name="txtRut" Width="150"/>
-        </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="0,0,0,20">
+                    <TextBlock Text="🆔 RUT:" Width="100" VerticalAlignment="Center" FontWeight="SemiBold"/>
+                    <TextBox x:Name="txtRut" Width="180"/>
+                </StackPanel>
 
-        <!-- Botón -->
-        <Button Grid.Row="1" Content="Exportar a Excel"
-                Width="200" Height="40"
-                HorizontalAlignment="Center"
-                Click="BtnExportar_Click"/>
+                <!-- Botón de exportación -->
+                <Button Content="📤 Exportar a Excel"
+                        Click="BtnExportar_Click"
+                        Style="{StaticResource PrimaryButton}"
+                        HorizontalAlignment="Center"/>
+            </StackPanel>
+        </Border>
     </Grid>
 </Window>
