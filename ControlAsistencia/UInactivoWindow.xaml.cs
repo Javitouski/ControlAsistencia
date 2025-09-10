@@ -44,7 +44,7 @@ namespace ControlAsistencia
             var usuario = listUsuarios.SelectedItem as Usuario;
             if (usuario == null)
             {
-                MessageBox.Show("Seleccione un usuarios", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Seleccione un usuario", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
             // Se llama a la base de datos
