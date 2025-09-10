@@ -11,7 +11,7 @@
         <TextBox x:Name="txtCorreo" HorizontalAlignment="Left" Margin="234,121,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="187" Height="22"/>
         <Label Content="Usuario" HorizontalAlignment="Left" Margin="80,119,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.672,-0.223" Width="109"/>
         <Label Content="Contraseña" HorizontalAlignment="Left" Margin="80,167,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.021,0.18" Width="109"/>
-        <TextBox x:Name="txtPassword" HorizontalAlignment="Left" Margin="234,169,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="187" Height="22"/>
+        <PasswordBox x:Name="txtPassword" HorizontalAlignment="Left" Margin="234,169,0,0" VerticalAlignment="Top" Width="187" Height="22"/>
 
     </Grid>
 </Window>

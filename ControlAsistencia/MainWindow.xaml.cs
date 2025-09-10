@@ -16,7 +16,7 @@ namespace ControlAsistencia
         {
             // Obtener los valores de los campos de texto
             string correo = txtCorreo.Text.Trim();
-            string password = txtPassword.Text; // si luego usas PasswordBox: .Password
+            string password = txtPassword.Password; // si luego usas PasswordBox: .Password
 
             
             using var db = new AsistenciaDbContext();

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ControlAsistencia.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -52,7 +53,20 @@ namespace ControlAsistencia
         //Evento para editar un usuario seleccionado
         private void BtnEditar_Click(object sender, RoutedEventArgs e)
         {
-            // Lógica para editar usuario
+            // Usar el DataGrid correcto (dgUsuarios)
+            var usuario = dgUsuarios.SelectedItem as Usuario;
+            if (usuario == null)
+            {
+                MessageBox.Show("Seleccione un usuario para editar", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+
+            // Asegúrate que la ventana de edición se llame EditarUsuarioWindow y tenga un constructor que acepte un int (Id)
+            var ventanaEdicion = new EditarUsuariosWindow(usuario.Id);
+            if (ventanaEdicion.ShowDialog() == true)
+            {
+                CargarUsuariosActivos(); // refrescar lista si se guardaron cambios
+            }
         }
 
         //Evento para eliminar (desactivar) un usuario seleccionado
@@ -107,7 +121,11 @@ namespace ControlAsistencia
         //Evento para abrir la ventana de usuarios inactivos
         private void BtnInactivo_Click(object sender, RoutedEventArgs e)
         {
-            new UInactivoWindow().Show();
+            var win = new UInactivoWindow();
+            if (win.ShowDialog() == true)
+            {
+                CargarUsuariosActivos();
+            }
         }
         //Evento para actualizar la lista de usuarios activos
         private void BtnActualziar_Click(object sender, RoutedEventArgs e)
