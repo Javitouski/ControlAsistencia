@@ -5,13 +5,98 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ControlAsistencia"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="519">
-    <Grid>
-        <Button x:Name="BtnLog" Content="LogIn" Margin="234,253,0,0" VerticalAlignment="Top" Height="43" Width="158" Background="#FF14DED0" HorizontalAlignment="Left" Click="BtnLog_Click"/>
-        <TextBox x:Name="txtCorreo" HorizontalAlignment="Left" Margin="234,121,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="187" Height="22"/>
-        <Label Content="Usuario" HorizontalAlignment="Left" Margin="80,119,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.672,-0.223" Width="109"/>
-        <Label Content="Contraseña" HorizontalAlignment="Left" Margin="80,167,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.021,0.18" Width="109"/>
-        <TextBox x:Name="txtPassword" HorizontalAlignment="Left" Margin="234,169,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="187" Height="22"/>
+        Title="Iniciar Sesión" Height="450" Width="520" WindowStartupLocation="CenterScreen">
 
+    <!-- Fondo con degradado -->
+    <Window.Background>
+        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+            <GradientStop Color="#F4F9F9" Offset="0"/>
+            <GradientStop Color="#E9FFFE" Offset="1"/>
+        </LinearGradientBrush>
+    </Window.Background>
+
+    <Window.Resources>
+        <!-- Estilo para textbox -->
+        <Style TargetType="TextBox">
+            <Setter Property="Margin" Value="0,6,0,6"/>
+            <Setter Property="Padding" Value="8"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Width" Value="220"/>
+        </Style>
+
+        <!-- Estilo para passwordbox -->
+        <Style TargetType="PasswordBox">
+            <Setter Property="Margin" Value="0,6,0,6"/>
+            <Setter Property="Padding" Value="8"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Width" Value="220"/>
+        </Style>
+
+        <!-- Estilo para botón -->
+        <Style x:Key="PrimaryButton" TargetType="Button">
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Background" Value="#30E3CA"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="Width" Value="200"/>
+            <Setter Property="Height" Value="45"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="root"
+                                Background="{TemplateBinding Background}"
+                                CornerRadius="10"
+                                SnapsToDevicePixels="True">
+                            <Border.Effect>
+                                <DropShadowEffect ShadowDepth="2" BlurRadius="10" Opacity="0.25"/>
+                            </Border.Effect>
+                            <ContentPresenter HorizontalAlignment="Center"
+                                              VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="root" Property="Opacity" Value="0.9"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter TargetName="root" Property="Background" Value="#2CD8BE"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+
+    <!-- Layout principal -->
+    <Grid>
+        <Border Background="White" CornerRadius="12" Padding="32" Width="360" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <StackPanel>
+                <!-- Título -->
+                <TextBlock Text="🔐 Iniciar Sesión"
+                           FontSize="20"
+                           FontWeight="Bold"
+                           Foreground="#333"
+                           HorizontalAlignment="Center"
+                           Margin="0,0,0,20"/>
+
+                <!-- Usuario -->
+                <TextBlock Text="Usuario" FontWeight="SemiBold" Foreground="#444"/>
+                <TextBox x:Name="txtCorreo" />
+
+                <!-- Contraseña -->
+                <TextBlock Text="Contraseña" FontWeight="SemiBold" Foreground="#444"/>
+                <PasswordBox x:Name="txtPassword" />
+
+                <!-- Botón -->
+                <Button x:Name="BtnLog"
+                        Content="Ingresar"
+                        Click="BtnLog_Click"
+                        Style="{StaticResource PrimaryButton}"
+                        Margin="0,20,0,0"
+                        HorizontalAlignment="Center"/>
+            </StackPanel>
+        </Border>
     </Grid>
 </Window>
